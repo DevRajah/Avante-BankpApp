@@ -1,0 +1,208 @@
+const mongoose = require('mongoose');
+
+const rfqSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    },
+    productName: {
+        type: String,
+        required: true
+    },
+    productCategory: {
+        type: String,
+        required: true
+    },
+    quantity: {
+        type: Number,
+        required: true
+    },
+    details: {
+        type: String,
+        required: true
+    },
+    preferredUnitPrice: {
+        type: Number,
+        required: true,
+    },
+    priceUnit: {
+        type: String,
+        default: "NGN"
+    },
+    sourcingType: {
+        type: String,
+        enum: ["Customized product", "Non Customized product", "Total Solution", "Business Service", "Other"],
+        required: true
+    },
+    tradeTerms: {
+        type: String,
+        enum: ["FOB", "EXW", "FAS", "FCA", "CFR", "CPT", "CIF", "CIP", "DES", "DAF", "DEQ", "DPP", "DDU"],
+        required: true
+    },
+    shippingMethod: {
+        type: String,
+        required: true,
+        enum: ["Sea freight", "Air freight", "Express", "Land freight"]
+    },
+    certification: {
+        type: String,
+        required: true
+    },
+    destination: {
+        type: String,
+        required: true,
+        enum: [ "Abia",
+            "Adamawa",
+            "Akwa Ibom",
+            "Anambra",
+            "Bauchi",
+            "Bayelsa",
+            "Benue",
+            "Borno",
+            "Cross River",
+            "Delta",
+            "Ebonyi",
+            "Edo",
+            "Ekiti",
+            "Enugu",
+            "Gombe",
+            "Imo",
+            "Jigawa",
+            "Kaduna",
+            "Kano",
+            "Katsina",
+            "Kebbi",
+            "Kogi",
+            "Kwara",
+            "Lagos",
+            "Nasarawa",
+            "Niger",
+            "Ogun",
+            "Ondo",
+            "Osun",
+            "Oyo",
+            "Plateau",
+            "Rivers",
+            "Sokoto",
+            "Taraba",
+            "Yobe",
+            "Zamfara",
+            "Abuja"
+        ]
+    },
+    paymentMethod: {
+        type: String
+    },
+    leadTime: {
+        type: Number,
+        required: true
+    },
+    sourcingPurpose: {
+        type: String,
+        enum: ["Wholesale", "Retail", "Production Equipment", "Raw Material for Production", "Coperate consumption", "Personal usw"],
+        required: true
+    },
+    quantityUnits: {
+        type: String,
+        enum: ["acres",
+            "amperes",
+            "bags",
+            "barrels",
+            "blades",
+            "boxes",
+            "bushels",
+            "carats",
+            "cartons",
+            "cases",
+            "centimeters",
+            "chains",
+            "combos",
+            "cubic centimeters",
+            "cubic feet",
+            "cubic inches",
+            "cubic meters",
+            "cubic yards",
+            "°Celsius",
+            "°Fahrenheit",
+            "dozens",
+            "drams",
+            "fluid ounces",
+            "feet",
+            "forty - foot container",
+            "furlongs",
+            "gallons",
+            "gills",
+            "grains",
+            "grams",
+            "gross",
+            "hectares",
+            "hertz",
+            "inches",
+            "kiloamperes",
+            "kilograms",
+            "kilohertz",
+            "kilometers",
+            "kiloohms",
+            "kilovolts",
+            "kilowatts",
+            "liters",
+            "long tons",
+            "megahertz",
+            "meters",
+            "metric tons",
+            "miles",
+            "milliamperes",
+            "milligrams",
+            "millihertz",
+            "milliliters",
+            "millimeters",
+            "milliohms",
+            "millivolts",
+            "milliwatts",
+            "nautical miles",
+            "ohms",
+            "ounces",
+            "packs",
+            "pairs",
+            "pallets",
+            "parcels",
+            "perches",
+            "pieces",
+            "pints",
+            "plants",
+            "poles",
+            "pounds",
+            "quarts",
+            "quarters",
+            "rods",
+            "rolls",
+            "sets",
+            "sheets",
+            "short tons",
+            "square centimeters",
+            "square feet",
+            "square inches",
+            "square meters",
+            "square miles",
+            "square yards",
+            "stones",
+            "strands",
+            "tons",
+            "tonnes",
+            "trays",
+            "twenty-foot container",
+            "units",
+            "volts",
+            "watts",
+            "Wp",
+            "yards"],
+        required: true
+    },
+    attachment: {
+        type: Array,
+    },
+}, { timeStamps: true });
+
+const rfqModel = mongoose.model('RFQ', rfqSchema);
+
+module.exports = rfqModel;
